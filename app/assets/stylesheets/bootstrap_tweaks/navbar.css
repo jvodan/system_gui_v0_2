@@ -1,0 +1,13 @@
+nav.navbar-default { background-color: inherit; font-size: 24px; }
+nav.navbar-default .navbar-brand { font-size: inherit; }
+nav.navbar { margin-bottom: 0px; }
+nav.navbar .navbar-icon { margin-top: -7px; margin-right: 5px;}
+
+nav.navbar.portal_navbar { border: none; }
+nav.navbar.portal_navbar li a { color: inherit; }
+nav.navbar.portal_navbar .navbar-brand { color: inherit }
+
+nav.navbar ul.navbar_collapsed { display: inline-block; float: none; margin: 0px; }
+nav.navbar ul.navbar_collapsed li { display: inline-block; }
+nav.navbar ul.navbar_collapsed li a { padding: 15px; margin: 0px; }
+@media(min-width:768px) { nav.navbar ul.navbar_collapsed { display: none; } }

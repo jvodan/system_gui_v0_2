@@ -1,0 +1,20 @@
+/*.btn.btn-xs { font-size: 12px; }
+.btn.btn-sm { font-size: 14px; }
+.btn { font-size: 16px; }
+.btn.btn-md { font-size: 18px; }
+.btn.btn-lg { font-size: 24px; }*/
+
+
+/*.btn.btn-noborder { border: none; }*/
+/*.btn.btn-link:hover { text-decoration: none; }*/
+/*.btn.btn-link:active { text-decoration: none; }*/
+/*.btn.btn-md { font-size: 18px; }*/
+/*.btn.btn-lg { font-size: 24px; }*/
+/*.btn.btn-link:active { box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);; }*/
+/*.dropdown-menu > li > a.btn-md { font-size: 18px; }*/
+
+
+button.btn.btn_resource { color: #337ab7; background-color: transparent; border-radius: 0px; }
+button.btn.btn_resource:hover { text-decoration: none; color: #333; }
+button.btn.btn_resource:active { box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); }
+.btn-group form.button_to { display: inline; }

@@ -1,0 +1,32 @@
+<% header_html = (engine.icon.blank? || engine.icon.dirty?) ? engine.name : { html: icon_url_text(engine.name, engine.icon.url(:small)) } %>
+<%= modal footer_close: true, header: header_html, id: "engine_#{engine.id}_control_panel_modal" do %>
+  <%= content_tag :div, id: "engine_#{engine.id}_status_indicator" do %>
+  <%= status_indicator_for(engine.core_engine.state.to_sym) %>
+  <%= engine.core_engine.state.to_s.humanize %>
+  <% end %>
+  <hr>
+  <%= content_tag(:div, class: 'btn-group') do %>
+    <%= engine_action_link engine, :start, icon: 'fa-play' %>
+    <%= engine_action_link engine, :stop, icon: 'fa-stop' %>
+    <%= engine_action_link engine, :pause, icon: 'fa-pause' %>
+    <%= engine_action_link engine, :unpause, icon: 'fa-pause-circle' %>
+    <%= engine_action_link engine, :restart, icon: 'fa-repeat' %>
+    <%= engine_action_link engine, :create, icon: 'fa-wrench' %>
+    <%= engine_action_link engine, :recreate, icon: 'fa-refresh' %>
+    <%= engine_action_link engine, :destroy %>
+  <% end %>
+  <hr>
+  <%= edit_resource_link :engine_display, text: 'Display', icon: 'fa-tv' %>
+  <%= edit_resource_link :engine_network, text: 'Network', icon: 'fa-sitemap' %>
+  <%= edit_resource_link :engine_resources, text: 'Resources', icon: 'fa-pie-chart' %>
+  <%= edit_resource_link :engine_variables, text: 'Variables', icon: 'fa-question' %>
+  <hr>
+  <%= resource_link :engine_report, text: 'Report', icon: 'fa-list-alt' %>
+  <%= resource_link :engine_about, text: 'About', icon: 'fa-info-circle' %>
+  <hr>
+  <%= engine_action_link engine, :reinstall, icon: 'fa-plus' %>
+  <hr>
+  <%= engines_website_links engine %>
+<% end %>
+
+<% #= edit_resource_link :system_engine_services, text: 'Services', icon: 'fa-compass' %>

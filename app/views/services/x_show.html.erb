@@ -1,0 +1,6 @@
+<%= content_tag :div, class: 'container_icon' do %>
+<% end %>
+<%= content_tag :div, class: 'container_label' do %>
+  <div><%= status_indicator_for(service.container.state) %> <strong><%= service.name %></strong></div>
+  <div><%= service.label %></div>
+<% end %>

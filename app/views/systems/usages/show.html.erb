@@ -1,0 +1,37 @@
+<%= content_tag :div, class: 'dashboard' do %>
+  <%= content_tag :div, class: 'row' do %>
+    <%= content_tag :div, class: 'col-sm-12' do %>
+      <%= content_tag :div, class: 'display_inline pull_right_wide_media' do %>
+        <%= return_to_system_link %>
+      <% end %>
+      <%= page_header text: 'Monitor', icon: 'fa-bar-chart' %>
+    <% end %>
+  <% end %>
+  <%= content_tag :div, class: 'row' do %>
+    <%= content_tag :div, class: 'col-sm-12' do %>
+
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#system" aria-controls="home" role="tab" data-toggle="tab">System</a></li>
+        <li role="presentation"><a href="#containers" aria-controls="profile" role="tab" data-toggle="tab">Containers</a></li>
+    		<li role="presentation"><a href="#applications" aria-controls="messages" role="tab" data-toggle="tab">Applications</a></li>
+        <li role="presentation"><a href="#services" aria-controls="settings" role="tab" data-toggle="tab">Services</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="system"><%= render 'system' %></div>
+        <div role="tabpanel" class="tab-pane" id="containers"><%= render 'containers' %></div>
+        <div role="tabpanel" class="tab-pane" id="applications">
+    			<% if @application_data_present %>
+    				<%= render 'applications' %>
+    			<% else %>
+    				<div class="col-sm-12 top-gap">
+    					<p class="">No applications are running.</p>
+    				</div>
+    			<% end %>
+    		</div>
+        <div role="tabpanel" class="tab-pane" id="services"><%= render 'services' %></div>
+      </div>
+
+    <% end %>
+  <% end %>
+<% end %>

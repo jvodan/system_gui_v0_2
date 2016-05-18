@@ -1,0 +1,28 @@
+<% header_html = (@system.icon.blank? || @system.icon.dirty?) ? @system.label : { html: icon_url_text(@system.label, @system.icon.url(:small)) } %>
+<%= modal footer_close: true, large: true, header: header_html, id: "system_report_modal" do %>
+  <%= content_tag :div, class: 'dl-horizontal' do %>
+    <%= data_list_text 'Exception logging?', @system.core_system.remote_exception_logging? %>
+    <%= content_tag :hr %>
+    <%= report_collapse_data 'System status', @system.core_system.system_status %>
+    <%= report_collapse_data 'Update status', @system.core_system.system_update_status %>
+    <%= report_collapse_data 'Domains', @system.core_system.list_domains %>
+    <%= report_collapse_data 'Engines states', @system.core_system.engine_states %>
+    <%= report_collapse_data 'Services states', @system.core_system.service_states %>
+    <%= report_collapse_data 'Current build', @system.core_system.current_build_params %>
+    <%= report_collapse_data 'Last build', @system.core_system.last_build_params %>
+    <%= report_collapse_data 'Build status', @system.core_system.build_status %>
+
+
+    <%= report_collapse_data 'Update status', @system.core_system.system_update_status %>
+    <%= report_collapse_data 'CPU Usage', @system.core_system.cpus_usage %>
+    <%= report_collapse_data 'Disk usage', @system.core_system.disks_usage %>
+    <%= report_collapse_data 'Network interface usage', @system.core_system.network_interfaces_usage %>
+    <%= report_collapse_data 'Engines version', @system.core_system.engines_version %>
+    <%= report_collapse_data 'Base OS version', @system.core_system.base_os_data %>
+    <%= report_collapse_data 'Logs', @system.core_system.logs %>
+
+
+
+
+  <% end %>
+<% end %>

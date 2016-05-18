@@ -1,0 +1,14 @@
+<%= link_to service_control_panel_path(service.name),
+    class: 'dashboard_container',
+    # data: { behavior: 'lazy_load', url: service_path(service.name), remote: true, status: 'none' } do
+    remote: true do %>
+  <%= content_tag :div, class: 'dashboard_container_label' do %>
+    <%= content_tag :div, id: "service_#{service.name}_status_indicator" do %>
+      <%= status_indicator_for(service.state) %>
+    <% end %>
+    <%= content_tag :div, class: 'dashboard_container_label_text' do %>
+      <%= content_tag :div, service.name %>
+      <%= content_tag :div, service.label, class: 'dashboard_container_label_subtext' %>
+    <% end %>
+  <% end %>
+<% end %>

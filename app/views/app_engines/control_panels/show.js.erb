@@ -1,0 +1,4 @@
+$(".modal").modal('hide');
+$("body").append("<%= j render('show', engine: @engine ) %>");
+$("#engine_<%= @engine.id %>_control_panel_modal").modal("show");
+$("#engine_<%= @engine.id %>_control_panel_modal").on("hidden.bs.modal", function(){$(this).remove();});

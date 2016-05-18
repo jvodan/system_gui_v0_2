@@ -1,0 +1,7 @@
+.container_status_running i.fa { color: #4b4; }
+.container_status_paused i.fa { color: #ff7f00; }
+.container_status_error i.fa { color: #f00; }
+.container_status_stopped i.fa { color: #66b; }
+.container_status_nocontainer i.fa { color: #bbb; }
+.container_status_state_error i.fa { color: #aaa; }
+.container_status_unbuilt i.fa { color: #666; }

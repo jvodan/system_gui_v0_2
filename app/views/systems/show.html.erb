@@ -1,0 +1,13 @@
+<%= content_tag :div, class: 'dashboard' do %>
+  <%= content_tag :div, class: 'row' do %>
+    <%= content_tag :div, class: 'col-sm-12' do %>
+      <%= system_menu %>
+      <%= page_header text: 'System', icon: 'fa-cloud' %>
+    <% end %>
+  <% end %>
+  <%= content_tag :div, class: 'row' do %>
+    <%= content_tag :div, class: 'col-sm-12 dashboard_containers' do %>
+      <%= render @system.engines %>
+    <% end %>
+  <% end %>
+<% end %>

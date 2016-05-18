@@ -1,0 +1,27 @@
+<%= modal footer_close: true, header: {text: service.name, icon: service.icon}, id: "service_#{service.name}_control_panel_modal" do %>
+  <%= content_tag :div, id: "service_#{service.name}_status_indicator" do %>
+  <%= status_indicator_for(service.core_service.state.to_sym) %>
+  <%= service.core_service.state.to_s.humanize %>
+  <% end %>
+  <hr>
+  <%= service_action_link service, :start, icon: 'fa-play' %>
+  <%= service_action_link service, :stop, icon: 'fa-stop' %>
+  <%= service_action_link service, :pause, icon: 'fa-pause' %>
+  <%= service_action_link service, :unpause, icon: 'fa-pause-circle' %>
+  <%= service_action_link service, :destroy %>
+  <%= service_action_link service, :restart, icon: 'fa-repeat' %>
+  <%= service_action_link service, :create, icon: 'fa-wrench' %>
+  <%= service_action_link service, :recreate, icon: 'fa-refresh' %>
+  <hr>
+  <%= edit_resource_link :system_service_settings_network, text: 'Network', icon: 'fa-sitemap' %>
+  <%= edit_resource_link :system_service_settings_resources, text: 'Resources', icon: 'fa-pie-chart' %>
+  <%= edit_resource_link :system_service_settings_variables, text: 'Variables', icon: 'fa-question' %>
+  <hr>
+  <%= resource_link :system_service_report, text: 'Report', icon: 'fa-list-alt' %>
+  <%= resource_link :system_service_about, text: 'About', icon: 'fa-info-circle' %>
+  <%= service_action_link service, :reinstall, icon: 'fa-plus', class: 'btn btn-lg pull-right' %>
+  <hr>
+  <%= services_website_links service %>
+
+
+<% end %>

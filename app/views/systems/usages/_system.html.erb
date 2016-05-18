@@ -1,0 +1,22 @@
+<div class="col-sm-12 top-gap">
+	<legend>Memory</legend>
+	<div class="text-center">
+		<%= image_tag system_usage_chart_path(chart: :total_system_memory_usage_pie_chart) %>
+	</div>
+	<legend>CPU load</legend>
+	<div class="text-center">
+		<%= image_tag system_usage_chart_path(chart: :system_cpu_usage_bar_chart) %>
+	</div>
+	<legend>Queue</legend>
+	<div class="text-center">
+		<%= image_tag system_usage_chart_path(chart: :system_cpu_usage_averages_bar_chart) %>
+	</div>
+	<legend>Disks</legend>
+	<div class="text-center">
+		<%= image_tag system_usage_chart_path(chart: :disk_usage_bar_chart) %>
+  	</div>
+	<legend>Network</legend>
+	<div class="text-center">
+		<%= image_tag system_usage_chart_path(chart: :network_usage_bar_chart) %>
+  	</div>
+</div>

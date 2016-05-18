@@ -1,0 +1,13 @@
+<%= form_for @display_settings, url: system_settings_display_path, remote: (true if request.format.to_sym == :js) do |f| %>
+<%= f.engines_legend 'System' %>
+<%= f.engines_field :system_label, label: 'Label', horizontal: true %>
+<%= f.engines_legend 'Admin' %>
+<%= f.engines_field :admin_banner, label: 'Banner' %>
+<%= f.engines_legend 'Colors' %>
+<%= f.engines_field :text_color, as: :color, label: 'Text', left: 2, width: 2, right: 0 %>
+<%= f.engines_field :background_color, as: :color, label: 'Background', left: 0, width: 2, right: 0 %>
+<%= f.engines_legend 'System' %>
+<%= f.engines_field :portal_header %>
+<%= f.engines_field :portal_footer %>
+<%= f.engines_cancel_submit %>
+<% end %>

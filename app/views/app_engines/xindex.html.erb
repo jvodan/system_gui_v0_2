@@ -1,0 +1,14 @@
+<%= content_tag :div, class: 'row' do %>
+  <%= content_tag :div, class: 'btn-group' do %>
+    <%= system_back_link %>
+  <% end %>
+  <%= content_tag :div, class: 'btn-group pull-right' do %>
+    <%= system_install_link %>
+  <% end %>
+<% end %>
+
+<%= content_tag :div, id: :engines, class: 'row' do %>
+  <% @engines.map do |engine| %>
+    <%= render engine %>
+  <% end %>
+<% end %>

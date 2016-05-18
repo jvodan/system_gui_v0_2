@@ -1,0 +1,14 @@
+<%= form_for display_settings, url: settings_display_path do |f| %>
+<%= f.legend 'System' %>
+<%= f.field :system_label, label: 'Label' %>
+<%= f.field :icon %>
+<%= f.legend 'Admin' %>
+<%= f.field :admin_banner, label: 'Banner' %>
+<%= f.legend 'Colors' %>
+<%= f.field :text_color, as: :color, label: 'Text' %>
+<%= f.field :background_color, as: :color, label: 'Background' %>
+<%= f.legend 'System' %>
+<%= f.field :portal_header %>
+<%= f.field :portal_footer %>
+<%= f.cancel_submit %>
+<% end %>

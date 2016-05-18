@@ -1,0 +1,11 @@
+<%= render file: '/systems/show' %>
+
+<script>
+  $('body').append('<%= j(modal(render('form'), header: {text: 'Display settings', icon: 'fa-edit'}, id: 'edit_system_display_settings_modal') ) %>');
+  $('#edit_system_display_settings_modal').modal({
+    backdrop: 'static'
+  }).modal('show');
+  $('#edit_system_display_settings_modal').on('hidden.bs.modal', function() {
+    $(this).remove();
+  });
+</script>

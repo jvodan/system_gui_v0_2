@@ -1,0 +1,6 @@
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= f.engines_field :username %>
+  <%= f.engines_field :password, as: :password %>
+  <%= f.engines_submit({ text: 'Sign in', icon: 'fa-sign-in' }) %>
+<% end %>
+<p><%= render "users/shared/links" %></p>
