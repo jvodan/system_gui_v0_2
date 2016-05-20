@@ -1,0 +1,3 @@
+#server_connection_status { color: #d9534f; }
+#server_connection_status.system_gui_connected { color: #f0ad4e; }
+#server_connection_status.system_core_connected { color: #5cb85c; }

@@ -11,76 +11,68 @@ module EnginesSystemCore
       # end
 
       def system_status
-        get 'system/status', {}
+        get_hash 'system/status'
       end
 
       def system_events
-        get 'system/events', {}
+        get_hash 'system/events'
       end
 
       def system_update_status
-        get 'system_api.system_update_status', {}
+        get_hash 'system_api.system_update_status'
       end
 
       def list_domains
-        get system_api.list_domains, []
+        get_array system_api.list_domains
       end
 
       def engine_states
-        get 'containers/engines/state', {}
+        get_hash 'containers/engines/state'
       end
 
       def service_states
-        get 'containers/services/state', {}
+        get_hash 'containers/services/state'
       end
 
       def current_build_params
-        get 'engine_builder/params', {}
+        get_hash 'engine_builder/params'
       end
 
       def last_build_params
-        get 'engine_builder/last_build', {}
+        get_hash 'engine_builder/last_build'
       end
 
       def build_status
-        get 'engine_builder/status', {}
+        get_hash 'engine_builder/status'
       end
 
       def remote_exception_logging?
-        get system_api.is_remote_exception_logging?
+        get_boolean system_api.is_remote_exception_logging?
       end
 
       def memory_statistics
-        get system_api.get_memory_statistics
+        get_hash system_api.get_memory_statistics
       end
 
       def engines_version
-        get system_api.version_string
+        get_string 'system/version/ident'
       end
 
       def engines_version
-        get system_api.version_string
-      end
-
-      def base_system_name
-        base_system_data['NAME']
-      end
-
-      def base_system_os_version
-        base_system_data['VERSION']
+        get_string 'system/version/system'
       end
 
       def system_update_status
-        SystemStatus.system_update_status
+        get_hash
       end
 
-      def base_system_data
-        SystemUtils.get_os_release_data
+      def base_system_version
+        get_hash 'system/version/base_os'
       end
 
       def cpus_usage
-        Vmstat.snapshot
-        get '/system/metrics/load'
+        # Vmstat.snapshot
+        get_hash '/system/metrics/load'
       end
 
       def disks_usage

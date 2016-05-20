@@ -3,7 +3,7 @@ module EnginesSystemCore
 
     include Loaders
     include Properties
-    include CoreResult::ApiCalls
+    include CoreApi::ApiCall
 
     # def system_api
     #   @@api ||= (p :LOAD_API; 10.times{p '$'}; EnginesOSapi.new)

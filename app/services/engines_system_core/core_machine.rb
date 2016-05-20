@@ -2,7 +2,7 @@ module EnginesSystemCore
   class CoreMachine
 
     include Versions
-    include CoreResult::ApiCalls
+    include CoreApi::ApiCall
 
     def initialize(ip, secret)
       @ip = ip

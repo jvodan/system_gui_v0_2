@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   resource :help, only: [:show]
+  resource :connection, only: [:show]
 
   resources :portals do
     resources :portal_engines, except: [:index]

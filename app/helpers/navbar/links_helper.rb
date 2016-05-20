@@ -24,7 +24,10 @@ module Navbar
 
     def application_navbar_sub_links
       content_tag(:li) do
-        navbar_help_link
+        navbar_network_link
+      end +
+      content_tag(:li) do
+        # navbar_help_link
       end +
       content_tag(:li) do
         navbar_user_sign_out_link
@@ -43,6 +46,10 @@ module Navbar
 
     def navbar_help_link
 			link_to icon('fa-question'), help_path(lookup: "#{params[:controller]}.#{params[:action]}.help"), title: 'Help', class: 'http_network_action'
+    end
+
+    def navbar_network_link
+			link_to icon('fa-wifi'), connection_path, title: 'Connection', id: 'server_connection_status'
     end
 
     def navbar_user_sign_out_link

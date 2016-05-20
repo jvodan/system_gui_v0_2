@@ -44,7 +44,7 @@ module Systems
             system_update_engines_link
           end +
           content_tag(:div, class: 'display_inline') do
-            content_tag(:span, "#{@system.core_system.base_system_name} (#{@system.core_system.base_system_os_version})", class: 'dropdown-header') +
+            content_tag(:span, "#{@system.core_system.base_system_version} (#{@system.core_system.base_system_version})", class: 'dropdown-header') +
             system_update_base_os_link
           end +
           content_tag(:hr) +

@@ -4,7 +4,7 @@ module EnginesSystemCore
     include Actions
     include Inspections
     include Properties
-    include CoreResult::ApiCalls
+    include CoreApi::ApiCall
 
     def initialize(name)
       @name = name

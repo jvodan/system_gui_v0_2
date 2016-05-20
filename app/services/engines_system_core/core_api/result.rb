@@ -1,5 +1,5 @@
 module EnginesSystemCore
-  module CoreResult
+  module CoreApi
     class Result
 
       def initialize(action, result, default=nil)
