@@ -3,9 +3,9 @@ module Shared
 
     def form_for(object, opts={}, &block)
       ( super object,
-            { builder: EnginesFormBuilder,
-              html: { id: opts[:id], class: 'form-horizontal' } }.
-                merge(opts),
+        (opts.without :remote).merge({ builder: EnginesFormBuilder,
+              remote: (opts[:remote].nil? ? (request.format.to_sym == :js) : opts[:remote]),
+              html: (opts.without :remote).merge({ class: "opts[:class] form-horizontal" }) }),
             &add_errors(&block) )
     end
 

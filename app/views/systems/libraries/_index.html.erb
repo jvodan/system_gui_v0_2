@@ -1,0 +1,5 @@
+<%= modal header: {text: 'Libraries', icon: 'fa-th'}, id: 'system_libraries_modal', footer_close: true do %>
+  <%= back_to_system_control_panel_menu_link %>
+  <%= new_system_library_link %>
+  <%= render @system.libraries %>
+<% end %>

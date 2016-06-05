@@ -1,0 +1,61 @@
+<%= modal footer_close: true, header: app.name, id: "app_#{app.name}_control_panel_modal" do %>
+  <%= content_tag :div, class: 'app_control_panel_icon_and_name clearfix' do %>
+    <%= content_tag :div, class: 'engines_control_panel_app_show_on_portal pull_right_wide_media' do %>
+      <%= content_tag :div, app.worker ? icon_text('Worker', 'fa-cog') : icon_text('Web application', 'fa-globe') %>
+      <%= content_tag :div, app.portal_show ? icon_text('Show on portal', 'fa-check') : icon_text('Do not show on portal', 'fa-times') %>
+    <% end %>
+    <%= content_tag :div, class: 'app_control_panel_icon' do %>
+      <% unless app.icon.blank? || app.icon.dirty? %>
+        <%= image_tag app.icon.url(:small) %>
+      <% end %>
+    <% end %>
+    <%= content_tag :div, class: 'app_control_panel_names' do %>
+      <%= content_tag :div, class: 'engines_control_panel_container_label' do %>
+        <%= app.name %>
+      <% end %>
+      <%= content_tag :div, class: 'engines_control_panel_container_label_subtext' do %>
+        <%= app.label %>
+      <% end %>
+      <%= content_tag :div, class: 'engines_control_panel_container_label_subtext' do %>
+        <%= app.title %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <%= content_tag :div, class: 'clearfix' do %>
+    <%= edit_resource_link :app_display, params: {app_id: app.id}, text: 'Edit', icon: 'fa-edit', title: "Edit #{app.name} display settings", class: 'pull_right_wide_media' %>
+  <% end %>
+  <% if app.websites.present? %>
+    <hr>
+    <%= app_website_links app %>
+  <% end %>
+  <hr>
+  <%= content_tag :div, class: "control_panel_container_state_indicator" do %>
+    <%= content_tag :span, class: "app_#{app.name}_state_indicator" do %>
+      <%= state_indicator_for(app.core_app.state.to_sym) %>
+    <% end %>
+    <%= content_tag :span, class: "app_#{app.name}_state_label" do %>
+      <%= app.core_app.state.to_s.humanize %>
+    <% end %>
+  <% end %>
+  <%= content_tag(:div, class: 'btn-group') do %>
+    <%= app_action_link app, :start, icon: 'fa-play' %>
+    <%= app_action_link app, :stop, icon: 'fa-stop' %>
+    <%= app_action_link app, :pause, icon: 'fa-pause' %>
+    <%= app_action_link app, :unpause, icon: 'fa-pause-circle' %>
+    <%= app_action_link app, :restart, icon: 'fa-repeat' %>
+    <%= app_action_link app, :create, icon: 'fa-wrench' %>
+    <%= app_action_link app, :recreate, icon: 'fa-refresh' %>
+    <%= app_action_link app, :destroy %>
+  <% end %>
+  <hr>
+  <%= edit_resource_link :app_network, text: 'Network', icon: 'fa-sitemap' %>
+  <%= edit_resource_link :app_resources, text: 'Resources', icon: 'fa-pie-chart' %>
+  <%= edit_resource_link :app_variables, text: 'Variables', icon: 'fa-question' %>
+  <hr>
+  <%= resource_link :app_report, text: 'Report', icon: 'fa-list-alt' %>
+  <%= resource_link :app_about, text: 'About', icon: 'fa-info-circle' %>
+  <hr>
+  <%= app_action_link app, :reinstall, icon: 'fa-plus' %>
+<% end %>
+
+<% #= edit_resource_link :system_app_services, text: 'Services', icon: 'fa-compass' %>

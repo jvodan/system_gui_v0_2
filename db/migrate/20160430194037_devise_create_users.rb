@@ -4,8 +4,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       ## Custom columns
       # Set suspend_at to prohibit authentication
       t.datetime :suspended_at
-      # Portal
-      t.integer :portal
 
       ## Database authenticatable
       t.string :username,           null: false, default: ""

@@ -19,8 +19,11 @@ module Shared
             content_tag(:div, class: 'modal-body') do
               body
             end +
+            if opts[:footer_ok]
+              modal_ok_dismiss_footer
+            end.to_s.html_safe +
             if opts[:footer_close]
-              modal_dismiss_footer
+              modal_close_dismiss_footer
             end.to_s.html_safe
           end
         end
@@ -56,8 +59,8 @@ module Shared
         end
     end
 
-    def modal_dismiss_footer
-      content_tag(:div, class: 'modal-footer modal_dismiss_footer', data: { dismiss: :modal }) do
+    def modal_close_dismiss_footer
+      content_tag(:div, class: 'modal-footer modal_close_dismiss_footer', title: 'Close', data: { dismiss: :modal }) do
         icon_text('Close', 'fa-times')
       end
     end

@@ -1,6 +1,13 @@
 Rails.application.configure do
-  # Engines configs
-  config.engines_system_core_url = 'http://127.0.0.1:4567/v0'
+  ## Engines configs
+  #System API
+  engines_system_api = "http://#{%x(/opt/engines/bin/system_ip.sh -d).chomp}/v0"
+  engines_system_api = "http://127.0.0.1:4567/v0"
+  config.engines_system_core_url = engines_system_api
+  puts "System API #{engines_system_api}"
+  # Temporary directory
+  config.tmp_dir = '/tmp'
+
 
 
   # Settings specified here will take precedence over those in config/application.rb.

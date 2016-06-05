@@ -1,0 +1,17 @@
+<%= content_tag :div, class: 'page_view' do %>
+  <%= content_tag :div, class: 'row' do %>
+    <%= content_tag :div, class: 'col-sm-12' do %>
+      <%= content_tag :div, class: 'display_inline pull_right_wide_media' do %>
+        <%= return_to_system_link %>
+      <% end %>
+      <%= page_header text: 'Install', icon: 'fa-plus' %>
+    <% end %>
+  <% end %>
+  <%= content_tag :div, class: 'row' do %>
+    <%= content_tag :div, class: 'col-sm-12' do %>
+      <% @library.apps.each do |app| %>
+        <%= render 'app', app: app %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

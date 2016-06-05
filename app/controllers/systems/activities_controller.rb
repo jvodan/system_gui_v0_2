@@ -2,7 +2,7 @@ module Systems
   class ActivitiesController < ApplicationController
 
     def show
-      @activity = System::Activity.new
+      @activity = Systems::Activity.new
     end
 
   end

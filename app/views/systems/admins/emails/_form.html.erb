@@ -1,0 +1,5 @@
+<%= form_for @admin, url: system_admin_email_path do |f| %>
+  <%= f.engines_field_builder :password, as: :password, autocomplete: :off, label: 'Password', title: 'Password' %>
+  <%= f.engines_field_builder :email, as: :email, label: 'Email', autocomplete: :off, title: 'Email' %>
+  <%= f.engines_cancel_submit %>
+<% end %>

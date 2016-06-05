@@ -1,0 +1,6 @@
+<%= form_for @domain, url: system_domain_path, method: :patch do |f| %>
+<%= f.engines_field_builder :domain_name, as: :read_only, horizontal: true, left: 4 %>
+<%= f.engines_field_builder :internal_only, as: :boolean, horizontal: true, label: false, checkbox_label: "Internal only", left: 4 %>
+<%= f.engines_field_builder :self_hosted, as: :boolean, horizontal: true, label: false, checkbox_label: "Self hosted", left: 4 %>
+<%= f.engines_cancel_submit %>
+<% end %>

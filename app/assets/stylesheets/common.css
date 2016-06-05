@@ -1,0 +1,26 @@
+.display_inline {
+  display: inline-block;
+}
+
+.pull_right_wide_media {
+  left: auto;
+  right: 0;
+  float: right;
+}
+.pull_right_wide_media ul {
+  left: auto;
+  right: 0;
+  float: right;
+}
+@media (max-width: 767px) {
+  .pull_right_wide_media {
+    left: 0;
+    right: auto;
+    float: inherit;
+  }
+  .pull_right_wide_media ul {
+    left: 0;
+    right: auto;
+    float: inherit;
+  }
+}

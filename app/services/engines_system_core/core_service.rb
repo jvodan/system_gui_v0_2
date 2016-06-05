@@ -12,9 +12,5 @@ module EnginesSystemCore
     end
     attr_reader :name
 
-    def api
-      @@api ||= (p :LOAD_ENGINE; 10.times{p '$'}; EnginesSystemCore::CoreSystem.load_service name)
-    end
-
   end
 end

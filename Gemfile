@@ -7,17 +7,13 @@ gem 'net_http_unix'
 gem 'git'
 # Tree
 gem 'rubytree'
-# Faster JSON
+# Better JSON - good for handling streams
 gem 'yajl-ruby'
 # Easy HTTP Rest
 gem 'rest-client'
 
-
-
-
 # # Expect these gems to go when new http core API added
 # gem 'vmstat'
-
 
 
 ##  Engines System GUI Gems
@@ -35,8 +31,10 @@ gem 'redcarpet'
 gem 'paperclip'
 # Charting
 gem 'gruff', git: 'https://github.com/jds13/gruff.git'
-gem "chartkick"
-
+gem 'chartkick'
+# File upload via AJAX - getting newest version from github because rubygems version (1.2.1) not supporting Rails 5
+# gem 'remotipart', git: 'https://github.com/JangoSteve/remotipart.git'
+gem 'remotipart', github: 'mshibuya/remotipart', ref: '3a6acb3'
 
 ## Default Rails Gems
 

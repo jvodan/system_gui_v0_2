@@ -1,0 +1,12 @@
+<%= link_to new_installers_repository_path(
+        installer_repository: {
+          app_label: app[:label],
+          app_icon_url: app[:icon_url],
+          repository_url: app[:repository_url],
+          library_id: params[:library_id] } ),
+        class: 'http_network_action installer_libarary_app_link_wrapper' do %>
+  <%= content_tag :div, class: 'installer_libarary_app' do %>
+    <%= image_tag app[:icon_url] %><br>
+    <%= app[:label] %>
+  <% end %>
+<% end %>

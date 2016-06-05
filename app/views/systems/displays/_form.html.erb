@@ -1,0 +1,14 @@
+<%= form_for @system, url: system_display_path do |f| %>
+<%= f.engines_legend 'System' %>
+<%= f.engines_field_builder :label, label: 'Label', horizontal: true %>
+<%= f.engines_legend 'Admin' %>
+<%= f.engines_field_builder :admin_banner, label: 'Banner' %>
+<%= f.engines_legend 'Colors' %>
+<%= f.engines_field_builder :text_color, as: :color, label: 'Text', left: 2, width: 2, right: 0 %>
+<%= f.engines_field_builder :background_color, as: :color, label: 'Background', left: 0, width: 2, right: 0 %>
+<%= f.engines_legend 'Portal' %>
+<%= f.engines_field_builder :portal_center_align, checkbox_label: 'Center align', label: false %>
+<%= f.engines_field_builder :portal_header %>
+<%= f.engines_field_builder :portal_footer %>
+<%= f.engines_cancel_submit %>
+<% end %>

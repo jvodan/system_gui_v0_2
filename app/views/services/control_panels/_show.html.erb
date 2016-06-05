@@ -1,6 +1,6 @@
 <%= modal footer_close: true, header: {text: service.name, icon: service.icon}, id: "service_#{service.name}_control_panel_modal" do %>
-  <%= content_tag :div, id: "service_#{service.name}_status_indicator" do %>
-  <%= status_indicator_for(service.core_service.state.to_sym) %>
+  <%= content_tag :div, id: "service_#{service.name}_state_indicator" do %>
+  <%= state_indicator_for(service.core_service.state.to_sym) %>
   <%= service.core_service.state.to_s.humanize %>
   <% end %>
   <hr>

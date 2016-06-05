@@ -1,4 +1,6 @@
 $(document).ajaxError (event, request, settings) ->
-  alert(request.responseText)
-  location.reload()
-  return
+  response = request.responseText
+  if typeof response != 'undefined'
+    alert(response)
+    location.reload()
+    return

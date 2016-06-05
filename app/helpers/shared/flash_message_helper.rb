@@ -4,6 +4,7 @@ module Shared
     def flash_messages
       content_tag(:div, id: :flash_messages) do
         flash.map do |msg_type, message|
+          next if message == true  # Devise creates { timedout: true } flag in flash messages
           flash_message(msg_type, message)
         end.join.html_safe
       end

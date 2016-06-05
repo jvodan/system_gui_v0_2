@@ -12,6 +12,7 @@ App.events = App.cable.subscriptions.create "EventsChannel",
 
   received: (data) ->
     eval(data['event'])
+    return
 
   speak: (data) ->
     @perform 'speak', event: data

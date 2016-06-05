@@ -1,0 +1,17 @@
+<%= link_to app_control_panel_path(app_id: app.id), title: app.title,
+    class: 'engines_container', remote: true do %>
+  <%= content_tag :div, class: 'engines_container_label' do %>
+    <% unless app.icon.blank? || app.icon.dirty? %>
+      <%= image_tag app.icon.url(:small), class: 'app_container_icon' %>
+    <% end %>
+    <%= content_tag :div, class: "container_state_indicator app_#{app.name}_state_indicator" do %>
+      <%= state_indicator_for(app.core_app.state) %>
+    <% end %>
+    <%= content_tag :div, class: 'engines_container_label_text' do %>
+      <%= content_tag :div do %>
+        <%= app.name %> <%= ( content_tag :span, icon('fa-check'), class: 'app_show_on_portal_indicator' ) if app.portal_show %>
+      <% end %>
+      <%= content_tag :div, (app.label.present? ? app.label : '&nbsp;'.html_safe), class: 'engines_container_label_subtext' %>
+    <% end %>
+  <% end %>
+<% end %>

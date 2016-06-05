@@ -1,0 +1,7 @@
+// Place all the styles related to the Portals controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.portal .btn:hover {color: inherit; background-color: rgba(0, 0, 0, 0.2);}
+.portal_app { }
+.portal_icon { display: inline-block; margin: 1px; height: 64px; width: 64px; font-size: 64px; line-height: 14px; }
+.portal_label { line-height: 1.2; height: 45px; width: 150px; font-size: 18px; white-space: normal; word-break: break-all;}

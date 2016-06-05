@@ -1,0 +1,7 @@
+.app_control_panel_icon_and_name { }
+.app_control_panel_icon { display: inline-block; vertical-align: top; padding: 0px 16px; }
+.app_control_panel_names { display: inline-block; }
+.engines_control_panel_container_label { font-size: 18px;}
+.engines_control_panel_container_label_subtext { font-size: 12px; color: #999; }
+.engines_control_panel_app_show_on_portal { font-size: 12px; color: #999; }
+.engines_control_panel_app_show_on_portal { padding: 10px 16px;}

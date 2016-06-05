@@ -15,18 +15,16 @@ Rails.application.routes.draw do
   resource :system, only: [:show]
   namespace :system, module: :systems do
     resource :report
-    resources :domains
+    resources :domains, only: [:index]
+    resource :domain, only: [:new, :create, :edit, :update, :destroy]
     resources :libraries
-    resource :display, only: [:show] do
-      resource :admin_banner, only: [:edit, :update]
-      resource :portal, only: [:edit, :update]
-      resource :colors, only: [:edit, :update]
-      resource :icon, only: [:edit, :update]
-      resource :wallpaper, only: [:edit, :update]
-    end
+    resource :display, only: [:edit, :update]
     resource :bug_reports, only: [:edit, :update]
-    resource :admin, only: [:edit, :update]
-    resources :users
+    resource :admin, only: [:show]
+    namespace :admin, module: :admins do
+      resource :password, only: [:edit, :update]
+      resource :email, only: [:edit, :update]
+    end
     resource :certificate_upload, only: [:new, :create]
     resource :certificate_download, only: [:show]
     resource :usage, only: [:show] do
@@ -45,13 +43,19 @@ Rails.application.routes.draw do
     resource :reboot, only: [:new, :create]
   end
 
+  # namespace :systems, module: :systems do
+  #   resources :domains
+  #   resources :libraries
+  # end
+
+
   # namespace :machine, module: :machines do
   #   resource :status, only: [:show]
   # end
 
-  namespace :engine, module: :app_engines do
+  namespace :app, module: :apps do
     resource :control_panel, only: [:show]
-    resource :action, only: [:show]
+    resource :instruction, only: [:show]
     resource :services, except: [:show]
     resource :report, only: [:show]
     resource :about, only: [:show]
@@ -59,20 +63,25 @@ Rails.application.routes.draw do
     resource :network, only: [:edit, :update]
     resource :resources, only: [:edit, :update]
     resource :variables, only: [:edit, :update]
-    resource :installation, only: [:show]
+    # resource :installation, only: [:show]
     resource :uninstall, only: [:new, :create]
+    resource :first_run, only: [:show]
+    resource :installation_report, only: [:show]
   end
 
-  resource :installer, only: [:show]
+  # resource :installer, only: [:show]
   namespace :installers, module: :installers do
-    resources :libraries, only: [:show]
-    resource :installation, only: [:new, :create]
+    resource :library, only: [:show]
+    resource :repository, only: [:new]
+    resource :new_app, only: [:new, :create]
+    resource :build, only: [:show]
+    resource :build_events, only: [:show]
   end
 
   resources :services, only: [:index]
   namespace :service, module: :services do
     resource :control_panel, only: [:show]
-    resource :action, only: [:show]
+    resource :instruction, only: [:show]
   end
 
 end

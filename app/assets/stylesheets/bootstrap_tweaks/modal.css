@@ -1,4 +1,4 @@
-/*body { min-height: 100vh; } /*Workaround for WebKit bug #150715*/*/
+/*body { min-height: 100vh; } /*Workaround for WebKit bug #150715*/
 .modal-body { overflow: hidden; }
-.modal_dismiss_footer { cursor: pointer; color: rgba(0, 0, 0, 0.2); }
-.modal_dismiss_footer:hover { color: rgba(0, 0, 0, 0.5); }
+.modal_close_dismiss_footer { cursor: pointer; color: rgba(0, 0, 0, 0.2); }
+.modal_close_dismiss_footer:hover { color: rgba(0, 0, 0, 0.5); }

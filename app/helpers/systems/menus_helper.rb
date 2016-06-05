@@ -6,12 +6,13 @@ module Systems
       system_menu_modal +
       system_certificate_menu_modal +
       system_key_menu_modal +
-      system_control_panel_menu_modal
+      system_control_panel_menu_modal +
+      system_install_menu_modal
     end
 
     def system_menu_link
       content_tag :div, class: 'display_inline pull_right_wide_media' do
-        content_tag :button, title: 'System menu', class: 'btn btn-lg btn_resource', type: 'button', 'data-toggle': :modal, 'data-target': '#system_menu_modal' do
+        content_tag :button, title: 'System menu', class: 'btn btn-xlg btn_resource', type: 'button', 'data-toggle': :modal, 'data-target': '#system_menu_modal' do
           icon 'fa-bars'
         end
       end
@@ -20,35 +21,31 @@ module Systems
     def back_to_system_menu_link
       content_tag :div, class: 'clearfix' do
         content_tag :button, title: 'Back to system menu', class: 'btn btn-lg btn_resource pull_right_wide_media', type: 'button', 'data-dismiss': :modal, 'data-toggle': :modal, 'data-target': '#system_menu_modal' do
-          icon 'fa-arrow-up'
+          icon 'fa-arrow-up '
         end
       end
     end
 
     def back_to_system_control_panel_menu_link
-      content_tag :div, class: 'clearfix' do
-        content_tag :button, title: 'Back to system control panel menu', class: 'btn btn-lg btn_resource pull_right_wide_media', type: 'button', 'data-dismiss': :modal, 'data-toggle': :modal, 'data-target': '#system_control_panel_menu_modal' do
-          icon 'fa-arrow-up'
-        end
+      content_tag :button, title: 'Back to system control panel menu', class: 'btn btn-lg btn_resource pull_right_wide_media', type: 'button', 'data-dismiss': :modal, 'data-toggle': :modal, 'data-target': '#system_control_panel_menu_modal' do
+        icon 'fa-arrow-up '
       end
     end
 
     def system_menu_modal
-      modal(header: {text: "System menu", icon: 'fa-bars'}, footer_close: true, id: "system_menu_modal") do
+      modal(header: {text: "System", icon: 'fa-cloud'}, footer_close: true, id: "system_menu_modal") do
           system_install_link +
-          content_tag(:hr) +
           system_activity_link +
+          system_control_panel_menu_link +
           content_tag(:hr) +
           content_tag(:div, class: 'display_inline') do
-            content_tag(:span, "Engines (#{@system.core_system.engines_version})", class: 'dropdown-header') +
+            content_tag(:span, "Engines (#{@system.engines_version})", class: 'dropdown-header') +
             system_update_engines_link
           end +
           content_tag(:div, class: 'display_inline') do
-            content_tag(:span, "#{@system.core_system.base_system_version} (#{@system.core_system.base_system_version})", class: 'dropdown-header') +
+            content_tag(:span, "#{@system.base_system_version[:name]} (#{@system.base_system_version[:version]})", class: 'dropdown-header') +
             system_update_base_os_link
-          end +
-          content_tag(:hr) +
-          system_control_panel_menu_link
+          end
       end
     end
 
@@ -63,8 +60,9 @@ module Systems
     def system_control_panel_menu_modal
       modal(header: {text: 'System control panel', icon: 'fa-cogs'}, footer_close: true, id: 'system_control_panel_menu_modal') do
         back_to_system_menu_link +
-        system_users_link +
+        system_admin_link +
         system_services_link +
+        system_display_link +
         system_domains_link +
         system_libraries_link +
         content_tag(:hr) +
@@ -114,9 +112,33 @@ module Systems
       end
     end
 
+    def system_install_menu_link
+      if @system.libraries.count == 1
+        library = @system.libraries.first
+        resource_link :installers_library,
+          title: 'Install an app', text: 'Install', icon: 'fa-plus',
+          params: { library_id: library.id },
+          remote: false
+      else
+        content_tag :button, title: 'Install an app', class: 'btn btn-lg btn_resource', type: 'button', 'data-dismiss': :modal, 'data-toggle': :modal, 'data-target': '#system_install_menu_modal' do
+          icon_text 'Install', 'fa-plus'
+        end
+      end
+    end
 
-
-
+    def system_install_menu_modal
+      modal(header: {text: 'Install', icon: 'fa-plus'},
+        footer_close: true, id: 'system_install_menu_modal') do
+          back_to_system_menu_link +
+          section_header('Select library') +
+          @system.libraries.map do |library|
+            resource_link :installers_library, text: library.to_s,
+              title: "Install from #{library.to_s}",
+              params: { library_id: library.id },
+              remote: false
+          end.join.html_safe
+      end
+    end
 
     # def system_domains_menu_link
     #   content_tag :div do

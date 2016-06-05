@@ -1,0 +1,88 @@
+<%= content_tag :div, class: 'col-sm-12' do %>
+  <%= form_for @new_app, url: installers_new_app_path do |f| %>
+
+  <%= f.hidden_field :repository_id %>
+
+  <%= f.engines_field_builder :label, horizontal: true %>
+  <%= f.engines_field_builder :container_name, horizontal: true %>
+
+  <%= f.engines_field_builder :http_protocol, as: :select, label: 'Protocol', collection: [[:http_https, 'HTTP and HTTPS'],[:https, 'HTTPS only'],[:http, 'HTTP']], width: 3, left: 2 %>
+  <%= f.engines_field_builder :host_name, compact: true, width: 3 %>
+  <%= f.engines_field_builder :domain_name, as: :select, collection: @system.domains.map{|domain| [domain.domain_name]}, compact: true, width: 4 %>
+
+  <%= f.engines_field_builder :memory, left: 2, width: 10 %>
+
+  <%= f.engines_legend 'Service connections' %>
+  <%= f.fields_for :service_connections do |ff| %>
+    <% next unless ff.object.persistent? %>
+    <%= ff.engines_field_builder :publisher_namespace, as: :hidden %>
+    <%= ff.engines_field_builder :type_path, as: :hidden %>
+    <%= content_tag :div, class: 'col-sm-12' do %>
+      <%= content_tag :div, class: 'form-group panel form_panel' do %>
+        <%= content_tag :div, class: 'panel-heading' do %>
+          <%= ff.object.label %>
+        <% end %>
+        <%= content_tag :div, class: 'panel-body' do %>
+        <%= ff.engines_field_builder :create_type, as: :radios,
+              collection: ff.object.create_type_collection, horizontal: true, compact: true %>
+        <%= ff.engines_field_builder :existing_service, as: :select,
+              collection: ff.object.existing_services_collection,
+              horizontal: true, label: 'Existing',
+              depend_on: {
+                input: "installer_new_app_service_connections_attributes_#{ff.options[:child_index]}_create_type_existing",
+                property: :checked } %>
+        <%= ff.engines_field_builder :orphan_service, as: :select,
+              collection: ff.object.orphan_services_collection,
+              horizontal: true, label: 'Orphan',
+              depend_on: {
+                input: "installer_new_app_service_connections_attributes_#{ff.options[:child_index]}_create_type_orphan",
+                property: :checked } %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%= f.engines_legend 'Environment variables' %>
+  <%= f.fields_for :environment_variables do |ff| %>
+    <%= ff.hidden_field :ask_at_build_time %>
+    <%= ff.hidden_field :build_time_only %>
+    <%= ff.fields_for :field do |fff| %>
+      <%= fff.engines_field %>
+      <%= fff.hidden_field :method_name %>
+      <%= fff.hidden_field :label %>
+      <%= fff.hidden_field :as %>
+      <%= fff.hidden_field :title %>
+      <%= fff.hidden_field :horizontal %>
+      <%= fff.hidden_field :compact %>
+      <%= fff.hidden_field :left %>
+      <%= fff.hidden_field :width %>
+      <%= fff.hidden_field :right %>
+      <%= fff.hidden_field :collection %>
+      <%= fff.hidden_field :tooltip %>
+      <%= fff.hidden_field :hint %>
+      <%= fff.hidden_field :placeholder %>
+      <%= fff.hidden_field :comment %>
+      <%= fff.hidden_field :validate_regex %>
+      <%= fff.hidden_field :validate_invalid_message %>
+      <%= fff.hidden_field :depends_on_field %>
+      <%= fff.hidden_field :depends_on_regex %>
+      <%= fff.hidden_field :required %>
+      <%= fff.hidden_field :read_only %>
+    <% end %>
+  <% end %>
+
+  <%= f.engines_legend 'License' %>
+  <%= content_tag :div, class:'col-sm-10 col-sm-offset-2' do %>
+    <%= content_tag :div, class: 'form-group form_text' do %>
+      <%= link_to f.object.blueprint[:license_label],
+          f.object.blueprint[:license_sourceurl],
+          title: "Read the license",
+          target: f.object.blueprint[:license_label].underscore %>
+    <% end %>
+  <% end %>
+
+  <%= f.engines_field_builder :license_accept, label: false,
+        checkbox_label: 'I have read and accept the license', horizontal: true %>
+  <%= f.engines_cancel_submit url: installers_library_path(library_id: @new_app.repository.library_id) %>
+  <% end %>
+<% end %>

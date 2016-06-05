@@ -1,0 +1,14 @@
+<%= form_for @app, url: app_display_path(app_id: @app.id) do |f| %>
+  <%= f.engines_field_builder :name, horizontal: true, as: :read_only %>
+  <%= f.engines_field_builder :label, horizontal: true %>
+  <%= f.engines_field_builder :title, horizontal: true, compact: true, comment: 'This is a comment', hint: 'Appears when pointer hovers over app.' %>
+  <%= f.engines_field_builder :icon, horizontal: true %>
+  <%= f.engines_legend %>
+  <%= f.engines_field_builder :portal_show, horizontal: true, label: false, checkbox_label: 'Show on portal' %>
+  <% if @app.worker %>
+    <%= f.engines_field_builder :portal_worker_message, depend_on: {input: :app_portal_show, property: :checked, display: :hide}, label: 'Worker message', horizontal: true, as: :text %>
+  <% else %>
+    <%= f.engines_field_builder :portal_link, label: 'Link', depend_on: {input: :app_portal_show, property: :checked}, horizontal: true, as: :select, collection: @app.websites.map{|website| [website]} %>
+  <% end %>
+  <%= f.engines_cancel_submit %>
+<% end %>

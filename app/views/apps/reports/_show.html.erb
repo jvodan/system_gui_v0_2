@@ -1,0 +1,49 @@
+<% header_html = (app.icon.blank? || engine.icon.dirty?) ? engine.name : { html: icon_url_text(app.name, engine.icon.url(:small)) } %>
+<%= modal footer_close: true, large: true, header: header_html, id: "app_#{@app.name}_report_modal" do %>
+  <%= content_tag :div, class: 'dl-horizontal' do %>
+    <%= data_list_text 'Name', engine.name %>
+    <%= data_list_text 'Image', engine.core_app.image %>
+    <hr>
+    <%= data_list_text 'Memory', "#{app.core_app.memory} MB" %>
+    <%= data_list_text 'Stats', report_stats(app.core_app.stats) %>
+    <hr>
+    <%= report_network_metrics engine.core_app.network_metrics %>
+    <hr>
+    <%= report_memory_statistics engine.core_app.memory_statistics %>
+    <hr>
+    <%= data_list_text 'HTTP protocol', engine.core_app.http_protocol %>
+    <%= data_list_text 'Host name', engine.core_app.host_name %>
+    <%= data_list_text 'Domain name', engine.core_app.domain_name %>
+    <%= data_list_text 'port', engine.core_app.port %>
+    <%= data_list_array 'External ports', engine.core_app.external_ports %>
+    <hr>
+    <%= data_list_text 'State', engine.core_app.state %>
+    <%= data_list_text 'Default', engine.core_app.default_startup_state %>
+    <hr>
+    <%= data_list_text 'Active?', engine.core_app.active? %>
+    <%= data_list_text 'Running?', engine.core_app.is_running? %>
+    <%= data_list_text 'Reinstall required?', engine.core_app.reinstall_required? %>
+    <%= data_list_text 'Restart required?', engine.core_app.restart_required? %>
+    <%= data_list_text 'Is error?', engine.core_app.is_error? %>
+    <%= data_list_text 'Has container?', engine.core_app.has_container? %>
+    <hr>
+    <%= data_list_text 'Deployment type', engine.core_app.deployment_type %>
+    <%= data_list_text 'Container type', engine.core_app.container_type %>
+    <hr>
+    <%= data_list_text 'Framework', engine.core_app.framework %>
+    <%= data_list_text 'Runtime', engine.core_app.runtime %>
+    <%= data_list_text 'Repository', engine.core_app.repository %>
+    <hr>
+    <%= report_ps_container_table engine.core_app.ps_container %>
+    <hr>
+    <%= report_collapse_data 'Last error', engine.core_app.last_error %>
+    <%= report_collapse_data 'Last result', engine.core_app.last_result %>
+    <%= report_collapse_data 'Container log', engine.core_app.logs_container %>
+    <%= report_collapse_data 'Environment variables', engine.core_app.environments.map(&:inspect) %>
+    <%= report_collapse_data 'Volumes', engine.core_app.volumes_hash %>
+    <%= report_collapse_data 'Blueprint', engine.core_app.blueprint %>
+    <%= report_collapse_data 'Installation report', engine.core_app.installation_report %>
+    <%= report_collapse_data 'Service connections', engine.core_app.attached_services %>
+    <%= report_collapse_data 'Available services', engine.core_app.available_services %>
+  <% end %>
+<% end %>

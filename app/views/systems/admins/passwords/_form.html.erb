@@ -1,0 +1,5 @@
+<%= form_for @admin, url: system_admin_password_path do |f| %>
+  <%= f.engines_field_builder :current_password, as: :password, autocomplete: :off, label: 'Current password', title: 'Current password' %>
+  <%= f.engines_field_builder :password, as: :password_with_confirmation, label: 'New password with confirmation', autocomplete: :off, title: 'New password with confirmation' %>
+  <%= f.engines_cancel_submit %>
+<% end %>

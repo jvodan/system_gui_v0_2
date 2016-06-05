@@ -1,5 +1,5 @@
 # module EnginesSystemCore
-#   class CoreEngine
+#   class CoreApp
 #     module Definitions
 #
 #       def type_path

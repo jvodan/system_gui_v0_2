@@ -1,0 +1,14 @@
+<%= link_to engine_control_panel_path(app.id),
+    class: 'col-sm-4 col-md-3 col-lg-2 engines_container',
+    # data: { behavior: 'lazy_load', url: engine_path(app.id), remote: true, status: 'none' } do
+    remote: true do %>
+  <%= content_tag :div, class: 'engines_container_label' do %>
+    <%= content_tag :div, class: "app_#{app.name}_state_indicator", do %>
+      <%= state_indicator_for(app.container.state) %>
+    <% end %>
+    <%= content_tag :div do %>
+      <%= engine.name %><br>
+      <%= "engine.label" %>
+    <% end %>
+  <% end %>
+<% end %>

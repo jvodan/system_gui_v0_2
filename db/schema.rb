@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160516180213) do
+ActiveRecord::Schema.define(version: 20160526060457) do
 
-  create_table "app_engines", force: :cascade do |t|
+  create_table "apps", force: :cascade do |t|
     t.integer  "system_id"
     t.string   "name"
     t.string   "label"
@@ -23,45 +23,76 @@ ActiveRecord::Schema.define(version: 20160516180213) do
     t.integer  "icon_file_size"
     t.string   "icon_updated_at"
     t.string   "installer_icon_url"
-    t.boolean  "launcher_hide"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.boolean  "worker"
+    t.boolean  "portal_show"
+    t.string   "portal_link"
+    t.text     "portal_worker_message"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
-  create_table "machines", force: :cascade do |t|
-    t.string   "label"
-    t.string   "ip"
-    t.string   "secret"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "fields", force: :cascade do |t|
+    t.integer "field_consumer_id"
+    t.string  "field_consumer_type"
+    t.string  "method_name"
+    t.string  "value"
+    t.string  "label"
+    t.string  "as"
+    t.string  "title"
+    t.boolean "horizontal"
+    t.boolean "compact"
+    t.integer "left"
+    t.integer "width"
+    t.integer "right"
+    t.string  "collection"
+    t.string  "tooltip"
+    t.string  "hint"
+    t.string  "placeholder"
+    t.string  "comment"
+    t.string  "validate_regex"
+    t.string  "validate_invalid_message"
+    t.string  "depends_on_field"
+    t.string  "depends_on_regex"
+    t.string  "depends_on_value"
+    t.string  "depends_on_property"
+    t.string  "depends_on_display"
+    t.boolean "required"
+    t.boolean "read_only"
   end
 
-  create_table "portal_engines", force: :cascade do |t|
-    t.integer  "portal_id"
-    t.integer  "engine_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "installer_new_app_environment_variables", force: :cascade do |t|
+    t.integer "new_app_id"
+    t.boolean "ask_at_build_time"
+    t.boolean "build_time_only"
   end
 
-  create_table "portals", force: :cascade do |t|
-    t.string   "label"
-    t.string   "text_color"
-    t.string   "background_color"
-    t.text     "header"
-    t.text     "footer"
-    t.boolean  "public"
-    t.boolean  "show_navbar"
-    t.boolean  "center_align"
-    t.string   "icon_file_name"
-    t.string   "icon_content_type"
-    t.integer  "icon_file_size"
-    t.datetime "icon_updated_at"
-    t.string   "wallpaper_file_name"
-    t.string   "wallpaper_content_type"
-    t.integer  "wallpaper_file_size"
-    t.datetime "wallpaper_updated_at"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+  create_table "installer_new_app_service_connections", force: :cascade do |t|
+    t.integer "new_app_id"
+    t.string  "publisher_namespace"
+    t.string  "type_path"
+    t.string  "create_type"
+    t.string  "existing_service"
+    t.string  "orphan_service"
+  end
+
+  create_table "installer_new_apps", force: :cascade do |t|
+    t.integer "repository_id"
+    t.string  "label"
+    t.string  "container_name"
+    t.string  "host_name"
+    t.string  "domain_name"
+    t.string  "http_protocol"
+    t.integer "memory"
+    t.boolean "license_accept"
+  end
+
+  create_table "installer_repositories", force: :cascade do |t|
+    t.text   "blueprint"
+    t.text   "raw_blueprint"
+    t.string "app_label"
+    t.string "app_icon_url"
+    t.string "repository_url"
+    t.string "library_id"
   end
 
   create_table "system_activity_snapshots", force: :cascade do |t|
@@ -84,7 +115,7 @@ ActiveRecord::Schema.define(version: 20160516180213) do
 
   create_table "systems", force: :cascade do |t|
     t.string   "label"
-    t.integer  "default_library_id"
+    t.string   "default_domain"
     t.string   "admin_banner"
     t.string   "text_color"
     t.string   "background_color"
@@ -92,13 +123,15 @@ ActiveRecord::Schema.define(version: 20160516180213) do
     t.string   "icon_content_type"
     t.integer  "icon_file_size"
     t.datetime "icon_updated_at"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.text     "portal_header"
+    t.text     "portal_footer"
+    t.boolean  "portal_center_align"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.datetime "suspended_at"
-    t.integer  "portal"
     t.string   "username",               default: "", null: false
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false

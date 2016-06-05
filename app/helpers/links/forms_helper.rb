@@ -39,7 +39,7 @@ module Links
       if url
         link_to(icon_text(text, icon), url, html_opts)
       else
-        button_tag(icon_text('Close', 'fa-times'), html_opts)
+        button_tag(icon_text('Cancel', 'fa-times'), html_opts)
       end
     end
 

@@ -1,0 +1,6 @@
+<% url = @library.new_record? ? system_libraries_path : system_library_path(@library) %>
+<%= form_for @library, url: url do |f| %>
+<%= f.engines_field_builder :name, horizontal: true, left: 4 %>
+<%= f.engines_field_builder :url, horizontal: true, left: 4 %>
+<%= f.engines_cancel_submit %>
+<% end %>

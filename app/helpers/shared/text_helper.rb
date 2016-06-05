@@ -70,12 +70,21 @@ module Shared
     end
 
     def format_time(time)
-      DateTime.parse(time).strftime "UTC %H:%M:%S %d %B %Y"
+      time = DateTime.parse(time) if time.is_a? String
+      time.strftime "UTC %H:%M:%S %d %B %Y"
     end
 
     def labelled_pretty_text(label, text)
       content_tag(:label, label) +
       pretty_print(text)
+    end
+
+    def boolean_text(boolean)
+      if boolean == true
+        icon_text('True', 'fa-check')
+      else
+        icon_text('False', 'fa-times')
+      end
     end
 
 

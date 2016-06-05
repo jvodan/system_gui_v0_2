@@ -1,13 +1,19 @@
 module EnginesSystemCore
   class CoreSystem
 
-    include Loaders
-    include Properties
-    include CoreApi::ApiCall
+    # include Actions
+    # include Loaders
+    # include Properties
 
-    # def system_api
-    #   @@api ||= (p :LOAD_API; 10.times{p '$'}; EnginesOSapi.new)
-    # end
+    include ContainerStates
+    include DomainNames
+    include EventStreams
+    include InstallApps
+    include Registries
+    include ServiceConnections
+    include Statistics
+    include Versions
+    include CoreApi::ApiCall
 
   end
 end

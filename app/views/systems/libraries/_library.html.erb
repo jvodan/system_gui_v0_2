@@ -1,0 +1,9 @@
+<hr>
+<%= content_tag :div, class: 'dl-horizontal' do %>
+  <%= data_list_text 'Name', library.name %>
+  <%= data_list_text 'URL', library.url %>
+<% end %>
+<% unless library == @system.libraries.first %>
+  <%= edit_system_library_link library %>
+  <%= delete_system_library_link library %>
+<% end %>

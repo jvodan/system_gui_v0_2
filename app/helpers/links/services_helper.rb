@@ -10,11 +10,11 @@ module Links
       when :destroy
         destroy_resource_link service,
           text: text, icon: icon, method: :get, title: title, class: html_class,
-          url: system_service_action_path(service_name: service.name, service_action: :destroy)
+          url: system_service_instruction_path(service_name: service.name, service_action: :destroy)
       else
         resource_link service,
           text: text, icon: icon, title: title, class: html_class,
-          url: system_service_action_path(service_name: service.name, service_action: action)
+          url: system_service_instruction_path(service_name: service.name, service_action: action)
       end
     end
 

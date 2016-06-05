@@ -19,11 +19,13 @@ class Service
   end
 
   def label
-    label_data[name.to_sym][:label]
+    return label_data[name.to_sym][:label] if label_data[name.to_sym]
+    name.to_s.humanize
   end
 
   def icon
-    label_data[name.to_sym][:icon]
+    return label_data[name.to_sym][:icon] if label_data[name.to_sym]
+    'fa-square-o'
   end
 
 end

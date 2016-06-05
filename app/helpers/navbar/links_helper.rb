@@ -49,7 +49,7 @@ module Navbar
     end
 
     def navbar_network_link
-			link_to icon('fa-wifi'), connection_path, title: 'Connection', id: 'server_connection_status'
+			link_to icon('fa-wifi'), connection_path, title: 'Connection', id: 'server_connection_status', class: 'system_gui_connected'
     end
 
     def navbar_user_sign_out_link
@@ -63,11 +63,14 @@ module Navbar
     end
 
     def portal_system_link
-      link_to icon('fa-cloud'), system_path, title: 'Manage Engines system', class: 'http_network_action'
+      content_tag(:style, ".fa.fa-chevron-down.fa-sm.fa-stack-1x.fa-inverse {color: #{@system.background_color};}") +
+      link_to(icon(['fa-cloud', 'fa-chevron-down']),
+        system_path,
+        title: 'Manage Engines system', class: 'http_network_action')
     end
 
     def system_portal_link
-      link_to icon('fa-close'), root_path, title: 'Close', class: 'http_network_action'
+      link_to icon(['fa-cloud', 'fa-chevron-up']), root_path, title: 'Close', class: 'http_network_action'
     end
 
   end

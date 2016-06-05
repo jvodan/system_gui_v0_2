@@ -1,0 +1,10 @@
+<%= content_tag :div, class: 'page_view' do %>
+  <%= content_tag :div, class: 'row' do %>
+    <%= content_tag :div, class: 'col-sm-12' do %>
+      <%= page_header text: 'Install', icon: 'fa-plus' %>
+    <% end %>
+  <% end %>
+  <%= content_tag :div, class: 'row' do %>
+    <%= render 'form' %>
+  <% end %>
+<% end %>

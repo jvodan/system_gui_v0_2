@@ -1,0 +1,5 @@
+<%= modal header: {text: 'Domains', icon: 'fa-globe'}, id: 'system_domains_modal', footer_close: true do %>
+  <%= back_to_system_control_panel_menu_link %>
+  <%= new_system_domain_link %>
+  <%= render @system.domains %>
+<% end %>

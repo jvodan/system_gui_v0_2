@@ -7,10 +7,41 @@ module Links
       title = opts[:title] || "#{resource.to_s}" unless opts[:title] == false
       url = opts[:url] || url_for([resource])
       remote = opts[:remote] != false
-      html_class = opts[:class] || 'btn btn-lg btn_resource'
+      html_class = "#{opts[:class]} btn btn-lg btn_resource"
       html_class = html_class + ' http_network_action' if !remote
-      button_to(url, method: :get,
-        title: title, remote: remote, class: html_class) do
+      button_to(url, method: :get, params: opts[:params],
+        title: title, remote: remote, form_class: opts[:form_class], class: html_class) do
+          icon_text(text, icon)
+        end
+    end
+
+    # def vs_new_object_link(model_name, opts={})
+    #   text = evaluate_spec_value opts[:text], "New #{model_name.humanize}"
+    #   icon = evaluate_spec_value opts[:icon], 'fa-plus'
+    #   title = evaluate_spec_value opts[:title], "New #{model_name.humanize}"
+    # html_opts = opts[:html_opts]
+    #   parent =  { model_name =>
+    #               { "#{opts[:parent].class.name.underscore}_id" =>
+    #                   opts[:parent].id } } if opts[:parent]
+    #   js_page_context = opts[:js_page_context]
+    #   link_to(
+    #     vs_icon_text(text, icon),
+    #     url_for(
+    #       [ :new,
+    #         model_name,
+    #         { js_page_context: js_page_context }.merge(parent || {}) ] ),
+    #         html_opts.merge( {title: title} ) )
+    # end
+
+    def new_resource_link(model_name, opts={})
+      text = opts[:text] || "New #{model_name.to_s}" unless opts[:text] == false
+      icon = opts[:icon] || 'fa-plus-square-o' unless opts[:icon] == false
+      title = opts[:title] || "New #{model_name.to_s}" unless opts[:title] == false
+      url = opts[:url] || url_for([:new, model_name])
+      remote = opts[:remote] != false
+      html_class = "#{opts[:class]} btn btn-lg btn_resource"
+      button_to url, method: :get, params: opts[:params],
+        title: title, remote: remote, form_class: opts[:form_class], class: html_class do
           icon_text(text, icon)
         end
     end
@@ -21,9 +52,9 @@ module Links
       title = opts[:title] || "Edit #{resource.to_s}" unless opts[:title] == false
       url = opts[:url] || url_for([:edit, resource])
       remote = opts[:remote] != false
-      html_class = opts[:class] || 'btn btn-lg btn_resource'
-      button_to url, method: :get,
-        title: title, remote: remote, class: html_class do
+      html_class = "#{opts[:class]} btn btn-lg btn_resource"
+      button_to url, method: :get, params: opts[:params],
+        title: title, remote: remote, form_class: opts[:form_class], class: html_class do
           icon_text(text, icon)
         end
     end
@@ -44,17 +75,17 @@ module Links
       disable_with = icon_text(confirm_disabled_text, confirm_disabled_icon)
       remote = opts[:remote] != false
       method = opts[:method] || :delete
-      html_class = opts[:class] || 'btn btn-lg btn_resource'
-      button_to url, method: method,
-        title: title, remote: remote, class: html_class,
+      html_class = "#{opts[:class]} btn btn-lg btn_resource"
+      button_to url, method: method, params: opts[:params],
+        title: title, remote: remote, form_class: opts[:form_class], class: html_class,
         disable_with: disable_with,
         'data-confirm': confirm_text,
         'data-confirm-title': confirm_title,
         'data-confirm-cancel-class': 'btn-warning pull-left',
         'data-confirm-proceed-class': 'btn-danger',
         'data-confirm-cancel': icon_text('Cancel', 'fa-times'),
-        'data-confirm-proceed': icon_text('Destroy', 'fa-exclamation'),
-        'data-confirm-fade': true do
+        'data-confirm-proceed': icon_text('Destroy', 'fa-warning'),
+        'data-confirm-fade': false do
           icon_text(text, icon)
         end
     end
@@ -115,23 +146,6 @@ module Links
     # # end
     #
     #
-    # def vs_new_object_link(model_name, opts={})
-    #   text = evaluate_spec_value opts[:text], "New #{model_name.humanize}"
-    #   icon = evaluate_spec_value opts[:icon], 'fa-plus'
-    #   title = evaluate_spec_value opts[:title], "New #{model_name.humanize}"
-    # html_opts = opts[:html_opts]
-    #   parent =  { model_name =>
-    #               { "#{opts[:parent].class.name.underscore}_id" =>
-    #                   opts[:parent].id } } if opts[:parent]
-    #   js_page_context = opts[:js_page_context]
-    #   link_to(
-    #     vs_icon_text(text, icon),
-    #     url_for(
-    #       [ :new,
-    #         model_name,
-    #         { js_page_context: js_page_context }.merge(parent || {}) ] ),
-    #         html_opts.merge( {title: title} ) )
-    # end
     #
     #
     # def vs_modal_form_cancel_link(opts={})

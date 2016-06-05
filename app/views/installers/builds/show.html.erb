@@ -1,0 +1,43 @@
+<%= content_tag :div, class: 'page_view' do %>
+  <%= content_tag :div, class: 'row' do %>
+    <%= content_tag :div, class: 'col-sm-12' do %>
+      <%= content_tag :div, class: 'display_inline pull_right_wide_media' do %>
+        <%= return_to_system_link %>
+      <% end %>
+      <%= page_header text: 'Install', icon: 'fa-plus' %>
+    <% end %>
+  <% end %>
+  <%= content_tag :div, class: 'row' do %>
+    <%= content_tag :div, class: 'col-sm-12' do %>
+      <p>Building <%= @new_app.container_name %></p>
+      <%= content_tag :div,
+          data: { behavior: :stream_builder_log,
+                  builder_log_url: installers_build_events_path } do %>
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="active"><a href="#installer_builder_log_tab" data-toggle="tab">Log</a></li>
+          <li style="display: none;"><a href="#installer_builder_report_tab" data-toggle="tab">Report</a></li>
+        </ul>
+        <div class="installer_builder_tabs tab-content">
+          <div class="tab-pane active" id="installer_builder_log_tab">
+            <%= content_tag :pre, nil, id: 'installer_builder_log' %>
+          </div>
+          <div class="tab-pane" id="installer_builder_report_tab">
+            <div class="row">
+              <div class="btn-toolbar pull-right">
+                <%= link_to content_tag(:i, "", class: "fa fa-external-link") + ' Open application',
+                    app_first_run_path(app_name: @new_app.container_name),
+                  class: 'btn btn-default',
+                  target: @new_app.container_name %>
+                <%= link_to content_tag(:i, "", class: "fa fa-level-up") + ' Popup report',
+                    app_installation_report_path(app_name: @new_app.container_name),
+                  class: 'btn btn-default',
+                  data: {popup: true} %>
+              </div>
+              <pre id="installer_builder_installation_report" class="top-gap"></pre></div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
