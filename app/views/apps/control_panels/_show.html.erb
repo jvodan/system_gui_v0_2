@@ -24,10 +24,6 @@
   <%= content_tag :div, class: 'clearfix' do %>
     <%= edit_resource_link :app_display, params: {app_id: app.id}, text: 'Edit', icon: 'fa-edit', title: "Edit #{app.name} display settings", class: 'pull_right_wide_media' %>
   <% end %>
-  <% if app.websites.present? %>
-    <hr>
-    <%= app_website_links app %>
-  <% end %>
   <hr>
   <%= content_tag :div, class: "control_panel_container_state_indicator" do %>
     <%= content_tag :span, class: "app_#{app.name}_state_indicator" do %>
@@ -46,6 +42,10 @@
     <%= app_action_link app, :create, icon: 'fa-wrench' %>
     <%= app_action_link app, :recreate, icon: 'fa-refresh' %>
     <%= app_action_link app, :destroy %>
+  <% end %>
+  <% if app.websites.present? %>
+    <hr>
+    <%= app_website_links app %>
   <% end %>
   <hr>
   <%= edit_resource_link :app_network, text: 'Network', icon: 'fa-sitemap' %>

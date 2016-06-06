@@ -11,7 +11,8 @@ gem 'rubytree'
 gem 'yajl-ruby'
 # Easy HTTP Rest
 gem 'rest-client'
-
+# MySQL for evelopment deployment on Engines
+gem 'mysql'
 # # Expect these gems to go when new http core API added
 # gem 'vmstat'
 
